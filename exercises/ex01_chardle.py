@@ -1,6 +1,6 @@
 """EX01 - Chardle - A cute step toward Wordle."""
 
-_author_ ="730607734"
+_author_ = "730607734"
 five_letters_word: str =input("Enter a 5-character word: ")
 only_one_character: str =input("Enter a single character: ")
 print ("Searching for " + only_one_character + " in " + five_letters_word)
