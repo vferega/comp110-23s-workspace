@@ -1,48 +1,43 @@
-"""One shot Wordle Exercise"""
+"""One shot Wordle Exercise."""
 
-_author_= "730607734"
+__author__ = "730607734"
 
-import random
 
-word_list = ["python", "hi" , "okk", "whyy", "nooooooo" , "tootle", "snakes"]
-
-Max_Attempts = 5
 secret_word = "python"
+length_of_secret_word = len(secret_word)
 
-for i in range(Max_Attempts):
-    attempts_remaining = Max_Attempts - i
-    guess = input (f"What is your 6-letter guess?")
-    if len(guess)!= 6:
-        print ("That was not 6 letters! Try again: ")
-        continue
-    if guess == secret_word:
-        print("Woo! You got it!")
-        break
-    else:
-        print("Not quite. Play again soon!")
-
+guess = input(f"What is your {length_of_secret_word} -letter guess? ")
+while len(guess) != 6:
+    guess = input(f"That was not {length_of_secret_word} letters! Try again: ")
 
 WHITE_BOX: str = "\U00002B1C"
 GREEN_BOX: str = "\U0001F7E9"
 YELLOW_BOX: str = "\U0001F7E8"
 
 result = " "
-i= 0
+i = 0
 
-while i <len(secret_word) and i < len(guess):
+while i < len(secret_word) and i < len(guess):
     if guess[i] == secret_word[i]:
         result += GREEN_BOX
     else:
-        result += WHITE_BOX
+        matched = False
+        the_index = 0
+        while not matched and the_index < len(secret_word):
+            if the_index != i and guess[i] == secret_word[the_index]:
+                matched = True
+            else:
+                the_index += 1
+        if matched:
+            result += YELLOW_BOX
+        else: 
+            result += WHITE_BOX
     i += 1
-while i<6:
-    result += WHITE_BOX
-    i += 1
+# print(result)
 
 if guess == secret_word:
-    print (result)
-    print ("Woo! You got it!")
+    print(result)
+    print("Woo! You got it!")
 else:
     print(result)
     print("Not quite. Play again soon!")
-    

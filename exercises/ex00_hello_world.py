@@ -1,3 +1,11 @@
-print("Hello, world. My name is Viktoria.") 
-"""My first program for COMP110."""
-__author__ = "730607734"
+x: int = 10
+result: str = ""
+
+while x >= 0:
+    if x % 3 > 0:
+        result = result + str(x)
+    else:
+        result = str(x) + result 
+    x= x - 1
+
+print(result)

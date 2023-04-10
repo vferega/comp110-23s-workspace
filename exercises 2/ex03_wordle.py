@@ -7,55 +7,48 @@ YELLOW_BOX: str = "\U0001F7E8"
 
 def contains_char(word:str, letter:str) -> bool:
     assert len(letter) == 1
-    i:int = 0 
-    while i < len(word):
-        if word[i] == letter:
+    for char in word: 
+        if char == letter:
             return True
-        else:
-            i= i+1
     return False
 
 
 def emojified(guess: str, secret: str) -> str:
     assert len(guess) == len(secret)
     result = ""
-    i: int = 0
-    while i < (len(guess)):
+    for i in range(len(guess)):
         if guess[i] == secret[i]:
             result +=GREEN_BOX
         elif contains_char(secret, guess[i]):
             result +=YELLOW_BOX
         else:
             result +=WHITE_BOX
-        i+= 1
     return result
 
 
-def input_guess(expected_length: int) ->str:
+def input_guess(expected_length):
     while True: 
-        guess= input(f"Enter a {expected_length} character word: ")
-        if len(guess) == expected_length:
+        guess= input("Enter a {} character word :". format(expected_length))
+        if len (guess) == expected_length:
             return guess
-        print (f"That wasn't {expected_length} chars! Try again: ")
+        print ("That wasn't {} chars! Try again: ")
 
 def main() -> None:
-    secret_word:str = "codes"
-    turns:int = 1
-    if_won:bool = False 
+    secret_word = "codes"
+    turns_left = 6
     # guessed_letters = set()
 
-    while turns <= 6 and not if_won:
-        print(f"===Turn {turns}/6 ===")
+    while turns_left > 0:
+        print(f"===Turn{7- turns_left}/6 === ")
         guess = input_guess(len(secret_word))
         # guessed_letters.add(guess)
         result = emojified(guess, secret_word)
         print(result)
         if guess == secret_word:
-            print(f"You won in {turns}/6 turns!")
-            if_won = True
-        turns += 1
-    if turns > 6:
-         print(f"X/6 - Sorry, try again tomorrow!")
+            print(f"You won in {7- turns_left}/{6} turns! ")
+            return
+        turns_left -= 1
+    print(f"X/6 - Sorry, try again tomorrow! ")
 
 if __name__ == "__main__":
     main()

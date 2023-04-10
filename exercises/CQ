@@ -1,0 +1,18 @@
+"""Challange Question Number 4."""
+
+__author__ = "730607734"
+
+def zip(wordies:list[str], brojevi:list[int]) -> dict[str, int]:
+    """The keys are the items of the first list and the values are the items of the second list of the same corresponding index to those from the first list."""
+ 
+ if len(wordies) != len(brojevi):
+    return {}
+ return dict(zip(wordies, brojevi))
+
+   
+
+
+
+    
+   
+    
